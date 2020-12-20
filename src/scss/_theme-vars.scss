@@ -1,0 +1,13 @@
+:root {
+  --body-background-color: #dccfc3;
+  --app-background: #fff;
+  --item-background: #f7f7f7;
+  --app-font-color: #333333;
+}
+
+[theme="dark"] {
+  --body-background-color: #424242;
+  --app-background: #000000;
+  --item-background: #272727;
+  --app-font-color: #f1efef;
+}

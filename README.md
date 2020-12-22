@@ -10,7 +10,7 @@ Searches GitHub repositories by user name and renders a list of results.
 * Dark Mode with SCSS and CSS variables
 
 ## NPM Scripts
-**npm run serve** - Start WebPack development server  
+**npm run serve** - Start webpackk development server running at http://localhost:8080/
 **npm run build** - Create a production build  
 **npm run test:unit** - Run unit test suite and generate coverage report located in ./coverage/lcov-report/index.html
 

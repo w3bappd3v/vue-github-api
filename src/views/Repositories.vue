@@ -21,9 +21,6 @@
           this.repositories = data;
           this.loading = false;
         });
-      },
-      check(event) {
-        this.$emit('setMode', event.target.checked);
       }
     }
   }
@@ -31,22 +28,18 @@
 
 <template>
   <div class="container">
-    <h1>Repo Finder</h1>
-    <input type="checkbox" class='theme-switch' @change="check($event)" />Dark Mode<br>
-    <input type="text" v-model="searchStr" placeholder="Ener Github User Name" />
-    <button @click="searchRepositories()">Search</button>
+    <form @submit.prevent>
+      <input type="text" v-model="searchStr" placeholder="Ener Github User Name" />
+      <button @click="searchRepositories()">Search</button>
+    </form>
     <h3 v-if="loading">Loading...</h3>
-    <div v-else class="repositories">
+    <ul v-else class="repositories">
       <Repository v-for="repository in repositories" :repository="repository" :key="repository.id" />
-    </div>
+    </ul>
   </div>
 </template>
 
 <style scoped lang="scss">
-  h1 {
-    margin: 5px 5px 10px 0;
-    display: inline-block;
-  }
   input[type="text"] {
     border-radius: 3px;
     border: 1px solid #d4d4d4;

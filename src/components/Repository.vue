@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <div class="repository">
+  <li class="repository">
     <h3>{{ repository.name }}</h3>
     <div class="info-row">
       <div class="owner">
@@ -29,7 +29,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 l
 <style scoped lang="scss">
@@ -52,10 +52,6 @@ l
   h3, h4, ul {
     margin: 0;
     padding: 0;
-  }
-  ul {
-    list-style: none;
-    text-align: left;
   }
   .owner, .languages {
     padding: 10px;

@@ -40,13 +40,4 @@ describe('Repositories.vue', () => {
     expect(mockSearch).toHaveBeenCalled()
   })
 
-  it('emits setMode', async () => {
-
-    const wrapper = shallowMount(Repositories)
-  
-    await wrapper.find('input[type="checkbox"]').setChecked()
-    
-    expect(wrapper.emitted('setMode')).toBeTruthy()
-  })
-
 })

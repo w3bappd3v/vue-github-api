@@ -1,13 +1,26 @@
 <script>
 export default {
+  data: function () {
+    return {
+      darkMode: false
+    }
+  },
+  created: function () {
+    this.setMode(this.getMode());
+  },
   methods: {
+    getMode () {
+      return localStorage.getItem('darkMode');
+    },
     setMode (value) {
       let htmlElement = document.documentElement;
-
       if (value) {
           htmlElement.setAttribute('theme', 'dark');
+          localStorage.setItem('darkMode', true);
+          this.darkMode = true;
       } else {
           htmlElement.setAttribute('theme', 'light');
+          localStorage.removeItem("darkMode");
       }
     }
   }
@@ -16,7 +29,12 @@ export default {
 
 <template>
   <div id="app">
+    <header>
+      <h1>Repo Finder</h1>
+      <input type="checkbox" class='theme-switch' @change="setMode($event.target.checked)" v-bind:checked="this.darkMode" />Dark Mode<br>
+    </header>
     <router-view @setMode="setMode"/>
+    <footer>Footer</footer>
   </div>
 </template>
 
@@ -49,7 +67,10 @@ export default {
     padding: 20px;
     background: var(--app-background);
   }
-
+  ul {
+    list-style: none;
+    text-align: left;
+  }
   button {
     height: 36px;
     border: none;
@@ -68,24 +89,9 @@ export default {
 
   button:focus {outline:0;}
 
-  #nav {
-    padding: 10px;
-
-    a {
-      font-weight: bold;
-      color: #5c79b7;
-      font-size: 1.5em;
-      text-decoration: none;
-      
-      &.router-link-exact-active {
-        color: #5c79b7;
-      }
-    }
-
-    a:hover {
-      text-shadow: 1px 1px 3px #9e9e9ebf;
-    }
-
+  h1 {
+    margin: 5px 5px 10px 0;
+    display: inline-block;
   }
   
 </style>

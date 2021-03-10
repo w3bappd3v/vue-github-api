@@ -33,8 +33,10 @@ export default {
       <h1>Repo Finder</h1>
       <input type="checkbox" class='theme-switch' @change="setMode($event.target.checked)" v-bind:checked="this.darkMode" />Dark Mode<br>
     </header>
-    <router-view @setMode="setMode"/>
-    <footer>Footer</footer>
+    <main>
+      <router-view @setMode="setMode"/>
+    </main>
+    <footer>2021 w3bappd3v</footer>
   </div>
 </template>
 
@@ -48,6 +50,9 @@ export default {
     margin: 0;
     padding: 0;
     overflow: auto;
+  }
+  main {
+    min-height: calc(100vh - 80px);
   }
   #app {
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
@@ -64,7 +69,6 @@ export default {
     border-top: none;
     border-bottom: none;
     min-width: 307px;
-    padding: 20px;
     background: var(--app-background);
   }
   ul {

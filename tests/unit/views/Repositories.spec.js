@@ -1,23 +1,23 @@
 import { shallowMount } from '@vue/test-utils'
 import Repositories from '@/views/Repositories.vue'
+// import axios from 'axios'
+
+jest.mock("axios", () => ({
+  get: jest.fn(() => Promise.resolve({ 
+    repositories: [
+      {
+        name: 'test-repo',
+        owner: {
+          avatar_url: 'https://test.com',
+          login: 'w3bappd3v'
+        }
+      }
+    ]
+  }))
+}))
+
 
 describe('Repositories.vue', () => {
-
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () => Promise.resolve({ 
-        repositories: [
-          {
-            name: 'test-repo',
-            owner: {
-              avatar_url: 'https://test.com',
-              login: 'w3bappd3v'
-            }
-          }
-        ]
-      })
-    })
-  )
 
   it('sets searchStr from input binding', () => {
     const wrapper = shallowMount(Repositories)
@@ -31,13 +31,14 @@ describe('Repositories.vue', () => {
 
   }) 
 
-  it('initiates search', async () => {
-    const mockSearch = jest.spyOn(Repositories.methods, 'searchRepositories')
+  it('fetches async when a button is clicked', async() => {
+    const mockSearch = jest.spyOn(Repositories.methods, 'getRepositories')
     const wrapper = shallowMount(Repositories)
-  
-    await wrapper.find('button').trigger('click')
+
+    const result = await wrapper.find('button').trigger('click')
 
     expect(mockSearch).toHaveBeenCalled()
+  
   })
 
 })

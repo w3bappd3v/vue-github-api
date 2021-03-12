@@ -1,5 +1,6 @@
 <script>
   import Repository from "../components/Repository";
+  import axios from 'axios'
   
   export default {
     data: function () {
@@ -13,12 +14,12 @@
       Repository: Repository
     },
     methods: {
-      searchRepositories () {
+      getRepositories () {
+        console.log('called');
         this.loading = true;
-        fetch("https://api.github.com/users/" + this.searchStr + "/repos").then(response => {
-          return response.json();
-        }).then(data => {
-          this.repositories = data;
+        axios.get("https://api.github.com/users/" + this.searchStr + "/repos")
+        .then((result) => {
+          this.repositories = result.data;
           this.loading = false;
         });
       }
@@ -30,7 +31,7 @@
   <div class="container">
     <form @submit.prevent>
       <input type="text" v-model="searchStr" placeholder="Ener Github User Name" />
-      <button @click="searchRepositories()">Search</button>
+      <button @click="getRepositories()">Search</button>
     </form>
     <h3 v-if="loading">Loading...</h3>
     <ul v-else class="repositories">

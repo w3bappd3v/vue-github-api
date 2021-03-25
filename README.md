@@ -6,7 +6,6 @@ Searches GitHub repositories by user name and renders a list of results.
 * Cross component comunication with props and custom events
 * Jest unit test coverage
 * Custom responsive CSS leveraging Flexbox
-* Pure fetch api for http vs additional Axios dependency 
 * Dark Mode with SCSS and CSS variables
 
 ## NPM Scripts
